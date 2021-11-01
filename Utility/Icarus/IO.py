@@ -1,12 +1,11 @@
-from Config import Icarus
-import os
-
+from os import listdir
+from os.path import join
 
 def get_levels():
     levels = []
 
-    for file_name in os.listdir(Icarus.data_dir):
-        with open(os.path.join(Icarus.data_dir, file_name)) as f:
+    for file_name in listdir(join('vglc_levels', 'Icarus')):
+        with open(join('vglc_levels', 'Icarus', file_name)) as f:
             levels.append([l.strip() for l in reversed(f.readlines())])
 
     return levels
