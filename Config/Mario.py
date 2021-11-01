@@ -9,7 +9,7 @@ from os.path import join
 
 name = 'Mario'
 
-data_dir = join('vglc_levels', 'Mario')
+data_dir = 'MarioData'
 
 flawed_agents = [
     'NO_ENEMY',
@@ -20,6 +20,9 @@ flawed_agents = [
 
 start_population_size = 500
 iterations = 80_000
+
+start_population_size = 250
+iterations = 1_000
 
 feature_names = ['linearity', 'leniency']
 feature_descriptors = [percent_linearity, percent_leniency]
@@ -57,11 +60,8 @@ n_mutate = NGramMutate(0.02, gram, max_strand_size)
 n_crossover = NGramCrossover(gram, start_strand_size, max_strand_size)
 population_generator = NGramPopulationGenerator(gram, start_strand_size)
 
-map_elites_config = join(data_dir, 'config_map_elites')
-data_file = join(data_dir, 'data')
 x_label = 'Linearity'
 y_label = 'Leniency'
-save_file = join(data_dir, 'map_elites')
 title = ''
 
 max_path_length = 5

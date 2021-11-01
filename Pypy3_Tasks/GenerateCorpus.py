@@ -9,29 +9,37 @@ from csv import writer
 import json
 
 class GenerateCorpus():
-    def __init__(self, config):
+    def __init__(self, config, alg_type):
         self.config = config
+        self.alg_type = alg_type
 
     def run(self, seed):
         #######################################################################
-        level_dir =  join(self.config.data_dir, 'levels')
+        make_if_does_not_exist(self.config.data_dir)
 
-        clear_directory(self.config.data_dir)
-        make_if_does_not_exist(level_dir)
+        ALG_DATA_DIR = join(self.config.data_dir, self.alg_type)
+        LEVEL_DIR = join(ALG_DATA_DIR, 'levels')
+        
+        clear_directory(ALG_DATA_DIR)
+        make_if_does_not_exist(LEVEL_DIR)
 
         #######################################################################
+        # map_elites_config = join(data_dir, 'config_map_elites')
+        # data_file = join(data_dir, 'data')
+        DATA_FILE = join(ALG_DATA_DIR, 'config_map_elites_generate_corpus_data.csv')
+
         print('writing config file for graphing')
         config = {
-            'data_file': f'{self.config.data_file}_generate_corpus_data.csv',
+            'data_file': DATA_FILE,
             'x_label': self.config.x_label,
             'y_label': self.config.y_label,
-            'save_file': f'{self.config.save_file}.pdf',
+            'save_file': join(ALG_DATA_DIR, 'map_elites.pdf'),
             'title': self.config.title,
             'resolution': self.config.resolution,
             'feature_dimensions': self.config.feature_dimensions
         }
 
-        f = open(f'{self.config.map_elites_config}.json', 'w')
+        f = open(join(ALG_DATA_DIR, 'generate_corpus_config.json'), 'w')
         f.write(json.dumps(config, indent=2))
         f.close()
 
@@ -58,7 +66,7 @@ class GenerateCorpus():
         invalid_levels =  0
         fitnesses = {}
         bins = gram_search.bins
-        f = open(f'{self.config.data_file}_generate_corpus_data.csv', 'w')
+        f = open(DATA_FILE, 'w')
         csv_writer = writer(f)
         csv_writer.writerow(self.config.feature_names + ['index', 'performance'])
         
@@ -76,7 +84,7 @@ class GenerateCorpus():
                 csv_writer.writerow(list(key) + [index, fitness])
 
                 file_name = f'{key[1]}_{key[0]}_{index}.txt'
-                level_file = open(join(level_dir, file_name), 'w')
+                level_file = open(join(LEVEL_DIR, file_name), 'w')
                 level_file.write(columns_into_grid_string(level))
                 level_file.close()
 
@@ -97,9 +105,9 @@ class GenerateCorpus():
 
         #######################################################################
         print('Storing results and Generating MAP-Elites graph...')
-        f = open(join(self.config.data_dir, 'generate_corpus_info.json'), 'w')
+        f = open(join(ALG_DATA_DIR, 'generate_corpus_info.json'), 'w')
         f.write(json.dumps(results, indent=2))
         f.close()
         
-        call(['python3', join('Scripts', 'build_map_elites.py'), self.config.data_dir, str(self.config.elites_per_bin)])
+        # call(['python3', join('Scripts', 'build_map_elites.py'), self.config.data_dir, str(self.config.elites_per_bin)])
         print('Done!')

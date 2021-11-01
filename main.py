@@ -1,4 +1,5 @@
 from Config import Mario, Icarus, DungeonGram
+import Pypy3_Tasks
 
 from time import time
 import argparse
@@ -20,6 +21,61 @@ game_group.add_argument('--dungeongram', action='store_true', help='Run DungeonG
 game_group.add_argument('--mario', action='store_true', help='Run Mario')
 game_group.add_argument('--icarus', action='store_true', help='Run Icarus')
 
+algorithm_group = parser.add_mutually_exclusive_group(required=True)
+algorithm_group.add_argument('--n-gram-placement', action='store_true', help='N-Grams with placement into bins')
+algorithm_group.add_argument('--map-elites', action='store_true', help='map-elites with standard operators')
+algorithm_group.add_argument('--gram-elites', action='store_true', help='gram-elites')
+
 type_group = parser.add_mutually_exclusive_group(required=True)
 type_group.add_argument('--generate-corpus', action='store_true', help='Generate a corpus')
+type_group.add_argument('--average-generated', action='store_true', help='Generate a set of corpuses to get the average # levels generated.')
 type_group.add_argument('--build_plots', action='store_true', help='Build plots from a corpus')
+
+
+args = parser.parse_args()
+
+if args.dungeongram:
+    config = DungeonGram
+elif args.mario:
+    config = Mario
+elif args.icarus:
+    config = Icarus
+else:
+    parser.print_help(sys.stderr)
+    sys.exit(-1)
+
+if args.n_gram_placement:
+    print('Algorithm => N-Grams with Placement')
+    config.start_population_size += config.iterations
+    config.iterations = 0
+    alg_type = 'n_gram'
+elif args.map_elites:
+    print('Algorithm => MAP-Elites with standard operators and n-gram population generation')
+    alg_type = 'map_elites'
+elif args.gram_elites:
+    print('Algorithm => Gram-elites')
+    config.crossover = config.n_crossover
+    config.mutate = config.n_mutate
+    alg_type = 'gram_elites'
+else:
+    parser.print_help(sys.stderr)
+    sys.exit(-1)
+
+if args.generate_corpus:
+    Pypy3_Tasks.GenerateCorpus(config, alg_type).run(args.seed)
+elif args.average_generated:
+    Pypy3_Tasks.AverageGenerated(config, alg_type, args.seed).run()
+elif args.build_plots:
+    raise NotImplementedError('build_plots not implemented')
+else:
+    parser.print_help(sys.stderr)
+    sys.exit(-1)
+
+import os
+os.popen('say "Done!"')
+
+end = time()
+
+hours, rem = divmod(end-start, 3600)
+minutes, seconds = divmod(rem, 60)
+print("{:0>2}:{:0>2}:{:05.2f}".format(int(hours),int(minutes),seconds))
