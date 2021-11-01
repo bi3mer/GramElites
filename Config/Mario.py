@@ -9,7 +9,7 @@ from os.path import join
 
 name = 'Mario'
 
-data_dir = join('vglc_levels', 'MarioData')
+data_dir = join('vglc_levels', 'Mario')
 
 flawed_agents = [
     'NO_ENEMY',

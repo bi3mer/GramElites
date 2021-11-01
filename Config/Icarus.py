@@ -11,7 +11,7 @@ from os.path import join
 
 name = 'Icarus'
 
-data_dir = join('vglc_levels', 'IcarusData')
+data_dir = join('vglc_levels', 'Icarus')
 
 flawed_agents = []
 
