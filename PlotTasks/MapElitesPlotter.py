@@ -61,12 +61,6 @@ def run(config, alg_name):
         matrices.append(matrix)
 
     color_bar_label = 'Percent Elites Found Per Bin'
-    # colors = [
-    #     [0.0, "green"],
-    #     [0.00000001, "#ff000011"],
-    #     [1.0, "#ff0000ff"],
-    # ]
-    # cmap = matplotlib.colors.LinearSegmentedColormap.from_list("", colors)
     cmap = 'Greens'
 
     for config, matrix in zip_longest(configs, matrices):

@@ -46,7 +46,6 @@ unigram_keys = set(unigram.grammar[()].keys())
 pruned = gram.fully_connect() # remove dead ends from grammar
 unigram_keys.difference_update(pruned) # remove any n-gram dead ends from unigram
 
-# fitness = summerville_fitness(gram)
 minimize_performance = True
 
 start_strand_size = 25

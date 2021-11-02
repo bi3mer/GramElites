@@ -57,14 +57,15 @@ def makeGetNeighbors(jumps,levelStr,visited,isSolid):
         else:
             neighbors.append([dist+1,(pos[0],pos[1]+1,-1)])
             if pos[1]+1 <= maxY:
-                if not isSolid(levelStr[pos[1]+1][pos[0]+1]):
+                if pos[0] + 1 < maxX and not isSolid(levelStr[pos[1]+1][pos[0]+1]):
                     neighbors.append([dist+1.4,(pos[0]+1,pos[1]+1,-1)])
-                if not isSolid(levelStr[pos[1]+1][pos[0]-1]):
+                if pos[0] - 1 >= 0 and not isSolid(levelStr[pos[1]+1][pos[0]-1]):
                     neighbors.append([dist+1.4,(pos[0]-1,pos[1]+1,-1)])
+                
             if pos[1]+2 <= maxY:
-                if not isSolid(levelStr[pos[1]+2][pos[0]+1]):
+                if pos[0] + 1 < maxX and not isSolid(levelStr[pos[1]+2][pos[0]+1]):
                     neighbors.append([dist+2,(pos[0]+1,pos[1]+2,-1)])
-                if not isSolid(levelStr[pos[1]+2][pos[0]-1]):
+                if pos[0] - 1 >= 0 and not isSolid(levelStr[pos[1]+2][pos[0]-1]):
                     neighbors.append([dist+2,(pos[0]-1,pos[1]+2,-1)])
         return neighbors
     return getNeighbors
