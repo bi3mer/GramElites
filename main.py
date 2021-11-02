@@ -7,7 +7,7 @@ import sys
 
 start = time()
 
-parser = argparse.ArgumentParser(description='Level Generation Pipeline.')
+parser = argparse.ArgumentParser(description='Gram-Elitesw')
 parser.add_argument('--seed', type=int, default=0, help='Set seed for generation')
 parser.add_argument(
     '--runs', 
@@ -28,9 +28,8 @@ algorithm_group.add_argument('--gram-elites', action='store_true', help='gram-el
 
 type_group = parser.add_mutually_exclusive_group(required=True)
 type_group.add_argument('--generate-corpus', action='store_true', help='Generate a corpus')
+type_group.add_argument('--plot-map-elites', action='store_true', help='Build plots from data generated with --generate-corpus')
 type_group.add_argument('--average-generated', action='store_true', help='Generate a set of corpuses to get the average # levels generated.')
-type_group.add_argument('--build_plots', action='store_true', help='Build plots from a corpus')
-
 
 args = parser.parse_args()
 
@@ -65,8 +64,9 @@ if args.generate_corpus:
     Pypy3_Tasks.GenerateCorpus(config, alg_type).run(args.seed)
 elif args.average_generated:
     Pypy3_Tasks.AverageGenerated(config, alg_type, args.seed).run()
-elif args.build_plots:
-    raise NotImplementedError('build_plots not implemented')
+elif args.plot_map_elites:
+    import PlotTasks
+    PlotTasks.MapElitesPlotter.run(config, alg_type)
 else:
     parser.print_help(sys.stderr)
     sys.exit(-1)
