@@ -69,6 +69,7 @@ elif args.plot_map_elites:
     import PlotTasks
     PlotTasks.MapElitesPlotter.run(config, alg_type)
 elif args.plot_counts:
+    import PlotTasks
     PlotTasks.AverageLevelsFoundPlotter.run(config, alg_type)
 else:
     parser.print_help(sys.stderr)
