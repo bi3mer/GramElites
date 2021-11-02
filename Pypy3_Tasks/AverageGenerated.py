@@ -2,11 +2,11 @@ from Optimization import MapElites
 from Utility import *
 
 from json import dumps as json_dumps
-from subprocess import call
 
 class AverageGenerated:
-    def __init__(self, config, seed):
+    def __init__(self, config, alg_type, seed):
         self.config = config
+        self.alg_type = alg_type
         self.seed = seed
 
     def run_generator(self, runs, build_map_elites, iterations, level_path):
@@ -38,10 +38,13 @@ class AverageGenerated:
     def run(self, runs):
         #######################################################################
         print('Setting up data directory...')
-        level_path = join(self.config.data_dir, 'average_generated_levels')
 
+        ALG_DATA_DIR = join(self.config.data_dir, self.alg_type)
+        LEVEL_DIR = join(ALG_DATA_DIR, 'average_generated_levels')
+        
         make_if_does_not_exist(self.config.data_dir)
-        clear_directory(level_path)
+        make_if_does_not_exist(ALG_DATA_DIR)
+        clear_directory(LEVEL_DIR)
 
         #######################################################################
         print('Running Gram-Elites')
@@ -52,22 +55,22 @@ class AverageGenerated:
             self.config.resolution,
             self.config.fitness,
             self.config.minimize_performance,
-            self.config.n_population_generator,
-            self.config.n_mutator,
-            self.config.n_crossover,
+            self.config.population_generator,
+            self.config.mutate,
+            self.config.crossover,
             self.config.elites_per_bin,
             rng_seed=self.seed + i
         )
+
         ng_bins, ng_counts, ng_search  = self.run_generator(
             runs, 
             builder, 
             self.config.iterations, 
-            level_path
+            LEVEL_DIR
         )
-
         #######################################################################
         print('Saving Results and Bins...')
-        f = open(join(self.config.data_dir, 'bins.json'), 'w')
+        f = open(join(ALG_DATA_DIR, 'bins.json'), 'w')
         f.write(json_dumps({
             'runs': runs,
             'resolution': self.config.resolution,
@@ -78,7 +81,7 @@ class AverageGenerated:
         f.close()
 
         print('Saving results')
-        f = open(join(self.config.data_dir, 'counts.json'), 'w')
+        f = open(join(ALG_DATA_DIR, 'counts.json'), 'w')
         f.write(json_dumps(ng_counts, indent=2))
         f.close()
 

@@ -42,7 +42,6 @@ class MapElites:
             update_progress(i / self.start_population_size)
             counts.append(self.current_count)
 
-        # fast iterations
         for i in range(iterations):
             parent_1 = sample(self.bins[sample(self.keys, 1)[0]], 1)[0][1]
             parent_2 = sample(self.bins[sample(self.keys, 1)[0]], 1)[0][1]
@@ -83,7 +82,7 @@ class MapElites:
             unclamped_score = feature_vector[i]
 
             if unclamped_score < minimum or unclamped_score > maximum:
-                print(f'Warnning: clamping score, {minimum} <= {unclamped_score} <= {maximum}')
+                print(f'Warning: clamping score, {minimum} <= {unclamped_score} <= {maximum}')
                 score = max(minimum, min(maximum, feature_vector[i]))
             else:
                 score = unclamped_score
