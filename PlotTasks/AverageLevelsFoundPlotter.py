@@ -3,14 +3,17 @@ import seaborn as sns
 import pandas as pd
 import json
 import sys
-import os
+
+from os.path import join
 
 def run(config, alg_type):
-    f = open(os.path.join(sys.argv[1], 'counts.json'), 'r')
+    ALG_DATA_DIR = join(config.data_dir, alg_type)
+
+    f = open(join(ALG_DATA_DIR, 'counts.json'), 'r')
     counts = json.load(f)
     f.close()
 
-    initial_population_size = int(sys.argv[2])
+    initial_population_size = config.start_population_size
     counts = [c[initial_population_size:] for c in counts]
 
     def make_multi_line_plot(counts_list, title, save_name, max_y):
@@ -22,7 +25,7 @@ def run(config, alg_type):
         ax.set_ylim([0, max_y])
         ax.set_title(title)
         ax.set(xlabel='Iteration', ylabel='Usable Segments')
-        fig.savefig(os.path.join(sys.argv[1], save_name))
+        fig.savefig(join(ALG_DATA_DIR, save_name))
         plt.close(fig)
 
     max_y = max([max(c) for c in counts])
@@ -51,9 +54,7 @@ def run(config, alg_type):
     ngo_df['Y'] = Y
     sns.lineplot(data=ngo_df, x='X', y='Y')
 
-
-
     plt.title('Usable Segments Per Iteration')
     plt.xlabel('Iteration')
     plt.ylabel('Usable Strands')
-    plt.savefig(os.path.join(sys.argv[1], 'counts.png'))
+    plt.savefig(join(ALG_DATA_DIR, 'counts.png'))
