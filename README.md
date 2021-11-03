@@ -11,19 +11,19 @@ In the context of procedural content generation via machine learning (PCGML), qu
 
 GAME can be "mario", "icarus", or "dungeongram". ALGORITHM can be "n-gram-placement", "map-elites", or "gram-elites".
 
-*Generate a corpus*
+*Generate a levels*
 ```bash
 pypy3 main.py --{GAME} --{ALGORITHM} --generate-corpus
 ```
 
-*Plot the MAP-Elites Grid*
+*Plot the MAP-Elites grid*
 ```bash
 python3 main.py --{GAME} --{ALGORITHM} --plot-map-elites
 ```
 
-*Run multiple times*
+*Run level generation multiple times*
 ```bash
-pypy3 main.py --{GAME} --{ALGORITHM} --average-generated
+pypy3 main.py --{GAME} --{ALGORITHM} --average-generated --runs {n}
 ```
 
 *Plot average generated*
