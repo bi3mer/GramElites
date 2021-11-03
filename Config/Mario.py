@@ -21,9 +21,6 @@ flawed_agents = [
 start_population_size = 500
 iterations = 80_000
 
-start_population_size = 250
-iterations = 1_000
-
 feature_names = ['linearity', 'leniency']
 feature_descriptors = [percent_linearity, percent_leniency]
 feature_dimensions = [[0, 1], [0, 1]] 

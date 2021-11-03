@@ -18,9 +18,6 @@ flawed_agents = []
 start_population_size = 500
 iterations = 120_000
 
-start_population_size = 250
-iterations = 1_000
-
 feature_names = ['density', 'leniency']
 feature_descriptors = [density, leniency]
 feature_dimensions = [[0, 0.5], [0, 0.5]] 
