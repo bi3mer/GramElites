@@ -5,6 +5,8 @@ def density(columns):
     total_number_of_blocks = 0
     for col in columns:
         num_solid_blocks += col.count(SOLID_BLOCK)
+        num_solid_blocks += col.count(STRUCTURE_1)
+        num_solid_blocks += col.count(STRUCTURE_2)
         total_number_of_blocks += len(col)
 
     return num_solid_blocks / total_number_of_blocks

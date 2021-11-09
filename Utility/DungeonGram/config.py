@@ -1,4 +1,6 @@
 SOLID_BLOCK = 'X'
+STRUCTURE_1 = '/'
+STRUCTURE_2 = '\\'
 ENEMY = '#'
 SWITCH = '*'
 SPIKE = '^'

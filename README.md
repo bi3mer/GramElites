@@ -1,6 +1,6 @@
 # Gram-Elites
 
-A free to read version of the paper can be found [here](https://bi3mer.github.io/pdf/2021_gram_elites.pdf). If you want to use segments generated without running the code yourself, can get the data [here](https://github.com/bi3mer/GramElitesData),
+A free to read version of the paper can be found [here](https://bi3mer.github.io/pdf/2021_gram_elites.pdf). If you want to use generated segments without running the code yourself, you can get the data [here](https://github.com/bi3mer/GramElitesData),
 
 ## Abstract
 
