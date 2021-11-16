@@ -85,7 +85,7 @@ class GenerateCorpus():
 
                 file_name = f'{key[1]}_{key[0]}_{index}.txt'
                 level_file = open(join(LEVEL_DIR, file_name), 'w')
-                level_file.write(columns_into_grid_string(level))
+                level_file.write(self.config.level_to_str(level))
                 level_file.close()
 
                 fitnesses[file_name] = fitness

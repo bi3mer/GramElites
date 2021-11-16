@@ -1,5 +1,5 @@
 from Optimization.Operators import *
-from Utility.Mario.IO import get_levels
+from Utility.Mario.IO import get_levels, level_to_str
 from Utility.Mario.Behavior import *
 from Utility.Mario.Fitness import *
 from Utility import NGram

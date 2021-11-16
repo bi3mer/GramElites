@@ -1,6 +1,6 @@
 from dungeongrams.dungeongrams import *
 from Optimization.Operators import *
-from Utility.Icarus.IO import get_levels
+from Utility.Icarus.IO import get_levels, level_to_str
 from Utility.Icarus.Behavior import *
 from Utility.Icarus.Fitness import *
 from Utility import NGram
@@ -10,8 +10,7 @@ from dungeongrams import *
 from os.path import join
 
 name = 'Icarus'
-
-data_dir = 'IcrauData'
+data_dir = 'IcarusData'
 
 flawed_agents = []
 

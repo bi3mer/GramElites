@@ -10,5 +10,5 @@ def get_levels():
 
     return levels
 
-def write_level(f, slices):
-    f.write('\n'.join(reversed(slices)))
+def level_to_str(slices):
+    return '\n'.join(reversed(slices))

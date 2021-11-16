@@ -1,6 +1,6 @@
 from dungeongrams.dungeongrams import *
 from Optimization.Operators import *
-from Utility.DungeonGram.IO import get_levels
+from Utility.DungeonGram.IO import get_levels, level_to_str
 from Utility.DungeonGram.Behavior import *
 from Utility import NGram
 from Utility.GridTools import columns_into_rows, rows_into_columns
@@ -21,6 +21,9 @@ flawed_agents = [
 
 start_population_size = 500
 iterations = 60_000
+
+start_population_size = 25
+iterations = 100
 
 feature_names = ['Density', 'leniency']
 feature_descriptors = [density, leniency]
