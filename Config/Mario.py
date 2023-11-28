@@ -1,3 +1,5 @@
+from .IConfig import IConfig
+
 from Optimization.Operators import *
 from Utility.Mario.IO import get_levels, level_to_str
 from Utility.Mario.Behavior import *
@@ -6,6 +8,10 @@ from Utility import NGram
 from Utility.LinkerGeneration import *
 
 from os.path import join
+
+class Mario(IConfig):
+    def __init__(self) -> None:
+        pass
 
 name = 'Mario'
 

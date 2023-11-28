@@ -36,13 +36,13 @@ task_group.add_argument('--plot-counts', action='store_true', help='Build count 
 args = parser.parse_args()
 
 if args.dungeongram:
-    config = DungeonGram
+    config = DungeonGram()
 elif args.mario:
-    config = Mario
+    config = Mario()
 elif args.icarus:
-    config = Icarus
+    config = Icarus()
 elif args.match3:
-    config = Match3
+    config = Match3()
 else:
     parser.print_help(sys.stderr)
     sys.exit(-1)

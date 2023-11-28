@@ -1,6 +1,8 @@
+
 from Utility.GridTools import columns_into_grid_string
 from Optimization import MapElites
 from Utility.Math import *
+from Config import IConfig
 from Utility import *
 
 from subprocess import call
@@ -9,7 +11,7 @@ from csv import writer
 import json
 
 class GenerateCorpus():
-    def __init__(self, config, alg_type):
+    def __init__(self, config: IConfig, alg_type: str):
         self.config = config
         self.alg_type = alg_type
 
