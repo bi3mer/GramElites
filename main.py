@@ -1,4 +1,4 @@
-from Config import Mario, Icarus, DungeonGram
+from Config import Mario, Icarus, DungeonGram, Match3
 import Pypy3_Tasks
 
 from time import time
@@ -20,6 +20,7 @@ game_group = parser.add_mutually_exclusive_group(required=True)
 game_group.add_argument('--dungeongram', action='store_true', help='Run DungeonGrams')
 game_group.add_argument('--mario', action='store_true', help='Run Mario')
 game_group.add_argument('--icarus', action='store_true', help='Run Icarus')
+game_group.add_argument('--match3', action='store_true', help='Run Match 3')
 
 algorithm_group = parser.add_mutually_exclusive_group(required=True)
 algorithm_group.add_argument('--n-gram-placement', action='store_true', help='N-Grams with placement into bins')
@@ -40,6 +41,8 @@ elif args.mario:
     config = Mario
 elif args.icarus:
     config = Icarus
+elif args.match3:
+    config = Match3
 else:
     parser.print_help(sys.stderr)
     sys.exit(-1)

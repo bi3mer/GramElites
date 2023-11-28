@@ -1,7 +1,10 @@
+from typing import List
+
 from Utility.LinkerGeneration import generate_link
 from random import randrange, random
+from .IMutate import IMutate
 
-class NGramMutate:
+class NGramMutate(IMutate):
     __slots__ = [
         'standard_deviation', 'mutation_values', 'mutation_rate', 
         'max_length', 'gram']
@@ -11,7 +14,7 @@ class NGramMutate:
         self.max_length = max_length
         self.gram = gram
 
-    def mutate(self, strand):
+    def mutate(self, strand: List[str]) -> List[str]:
         if strand == None:
             return None
 

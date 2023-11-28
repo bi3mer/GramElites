@@ -5,16 +5,15 @@ from random import choice
 
 from .IPopulationGenerator import IPopulationGenerator
 
-class NGramPopulationGenerator(IPopulationGenerator):
-    __slots__ = ['strand_size', 'gram']
+class RandomPopulationGenerator(IPopulationGenerator):
+    __slots__ = ['strand_size', 'values']
 
-    def __init__(self, n_gram, strand_size):
+    def __init__(self, strand_size, values):
         self.strand_size = strand_size
-        self.gram = n_gram
+        self.values = values
 
     def generate(self, n: int) -> List[List[str]]:
-        keys = list(self.gram.grammar.keys())
         return [
-            self.gram.generate(choice(keys), self.strand_size) 
+            [choice(self.values) for _ in repeat(None, self.strand_size)]
             for _ in repeat(None, n)
         ]
