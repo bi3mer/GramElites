@@ -6,30 +6,29 @@ from Optimization.Operators.RandomPopulationGenerator import RandomPopulationGen
 from Optimization.Operators.SinglePointCrossover import SinglePointCrossover
 
 from typing import List, Tuple, Callable
-from Optimization.Operators import IMutate, ICrossover, IPopulationGenerator
+from Optimization.Operators import IPopulationGenerator
+from .Icarus import IConfig
 
-class Match3:
+class Match3(IConfig):
     def __init__(self):
         self._mutation_values = [str(e) for e in range(7)]
-        self._mutate = Mutate(self._mutation_values, 0.02)
-        self._crossover = SinglePointCrossover()
-
         self._population_generator = RandomPopulationGenerator(
             self.start_strand_size, 
             self._mutation_values
         )
 
+        super().__init__(
+            100,
+            100,
+            Mutate(self._mutation_values, 0.02),
+            SinglePointCrossover(),
+            None, # Match 3 doesn't implement gram-elites
+            None  # Match 3 doesn't implement gram-elites
+        )
+
     @property
     def data_dir(self) -> str:
         return 'Match3Data'
-    
-    @property
-    def start_population_size(self) -> int:
-        return 20
-    
-    @property
-    def iterations(self) -> int:
-        return 20
     
     @property
     def feature_names(self) -> List[str]:
@@ -66,23 +65,6 @@ class Match3:
     @property
     def is_vertical(self) -> bool:
         return False
-    
-    @property
-    def mutate(self) -> IMutate:
-        return self._mutate
-    
-    @property
-    def crossover(self) -> ICrossover:
-        return self._crossover
-    
-    # Match 3 doesn't implement gram-elites for now.
-    # @property
-    # def n_mutate(self) -> IMutate:
-    #     raise NotImplementedError()
-    
-    # @property
-    # def n_crossover(self) -> ICrossover:
-    #     raise NotImplementedError()
     
     @property
     def minimize_performance(self) -> bool:

@@ -47,7 +47,7 @@ class GenerateCorpus():
         f.close()
 
         #######################################################################
-        print('Running Gram-Elites...')
+        print('Generating a corpus...')
         gram_search = MapElites(
             self.config.start_population_size,
             self.config.feature_descriptors,

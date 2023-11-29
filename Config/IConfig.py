@@ -2,16 +2,20 @@ from typing import List, Tuple, Callable
 from Optimization.Operators import IMutate, ICrossover, IPopulationGenerator
 
 class IConfig:
+    def __init__(
+        self, start_population_size: int, iterations: int, mutate: IMutate, 
+        crossover: ICrossover, n_mutate: IMutate, n_crossover: ICrossover
+    ):
+        self.start_population_size = start_population_size
+        self.iterations = iterations
+
+        self.mutate = mutate
+        self.crossover = crossover
+        self.n_mutate = n_mutate
+        self.n_crossover = n_crossover
+
     @property
     def data_dir(self) -> str:
-        raise NotImplementedError()
-    
-    @property
-    def start_population_size(self) -> int:
-        raise NotImplementedError()
-    
-    @property
-    def iterations(self) -> int:
         raise NotImplementedError()
     
     @property
@@ -48,22 +52,6 @@ class IConfig:
     
     @property
     def is_vertical(self) -> bool:
-        raise NotImplementedError()
-    
-    @property
-    def mutate(self) -> IMutate:
-        raise NotImplementedError()
-    
-    @property
-    def crossover(self) -> ICrossover:
-        raise NotImplementedError()
-    
-    @property
-    def n_mutate(self) -> IMutate:
-        raise NotImplementedError()
-    
-    @property
-    def n_crossover(self) -> ICrossover:
         raise NotImplementedError()
     
     @property

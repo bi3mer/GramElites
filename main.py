@@ -42,6 +42,9 @@ elif args.mario:
 elif args.icarus:
     config = Icarus()
 elif args.match3:
+    if args.gram_elites:
+        print('Match3 does not support gram-elites.')
+        sys.exit(-1)
     config = Match3()
 else:
     parser.print_help(sys.stderr)
