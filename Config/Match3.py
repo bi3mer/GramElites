@@ -8,7 +8,7 @@ from Optimization.Operators.SinglePointCrossover import SinglePointCrossover
 from typing import List, Tuple, Callable
 from Optimization.Operators import IMutate, ICrossover, IPopulationGenerator
 
-class IConfig:
+class Match3:
     def __init__(self):
         self._mutation_values = [str(e) for e in range(7)]
         self._mutate = Mutate(self._mutation_values, 0.02)
@@ -19,16 +19,17 @@ class IConfig:
             self._mutation_values
         )
 
+    @property
     def data_dir(self) -> str:
         return 'Match3Data'
     
     @property
     def start_population_size(self) -> int:
-        return 500
+        return 20
     
     @property
     def iterations(self) -> int:
-        return
+        return 20
     
     @property
     def feature_names(self) -> List[str]:
@@ -101,11 +102,11 @@ class IConfig:
     
     @property
     def population_generator(self) -> IPopulationGenerator:
-        raise NotImplementedError()
+        return self._population_generator
     
-    def fitness(lvl: List[str]) -> float:
-        res = post('http://localhost:8000/solve', json=lvl)
+    def fitness(self, lvl: List[str]) -> float:
+        res = post('http://localhost:8000/solve', json=[int(e) for e in lvl])
         return int(res.content)
     
-    def level_to_str(lvl: List[str]) -> str:
+    def level_to_str(self, lvl: List[str]) -> str:
         return ','.join(str(e) for e in lvl)

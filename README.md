@@ -31,6 +31,12 @@ pypy3 main.py --{GAME} --{ALGORITHM} --average-generated --runs {n}
 python3 main.py --{GAME} --{ALGORITHM} --plot-counts
 ```
 
+### Special Case
+
+Since the paper, I've gone back and made some changes to clean up the code. When I wrote this however long ago, I had this idea that a classless config as module was a good idea... it wasn't. But, we live and we learn. So, I've added some interfaces to make the code easier to follow. 
+
+I've also added Match3. The problem with Match3 is that I implemented it for the web, so it's all in [TypeScript](https://www.typescriptlang.org/). To make it callable by Python, I wrote a server that can be run locally. So, if you want to run Match3 yourself, you first have to get the server running, which is pretty simple and the instructions are in the Match3 [GitHub](https://github.com/bi3mer/match-three), sorry for any inconvenience. 
+
 
 ## Citation
 

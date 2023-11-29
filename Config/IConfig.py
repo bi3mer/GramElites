@@ -2,6 +2,7 @@ from typing import List, Tuple, Callable
 from Optimization.Operators import IMutate, ICrossover, IPopulationGenerator
 
 class IConfig:
+    @property
     def data_dir(self) -> str:
         raise NotImplementedError()
     
@@ -85,8 +86,8 @@ class IConfig:
     def population_generator(self) -> IPopulationGenerator:
         raise NotImplementedError()
     
-    def fitness(lvl: List[str]) -> float:
+    def fitness(self, lvl: List[str]) -> float:
         raise NotImplementedError()
     
-    def level_to_str(lvl: List[str]) -> str:
+    def level_to_str(self, lvl: List[str]) -> str:
         raise NotImplementedError()

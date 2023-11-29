@@ -17,6 +17,7 @@ class GenerateCorpus():
 
     def run(self, seed):
         #######################################################################
+        print(self.config.data_dir)
         make_if_does_not_exist(self.config.data_dir)
 
         ALG_DATA_DIR = join(self.config.data_dir, self.alg_type)
