@@ -27,7 +27,7 @@ class Mario(IConfig):
 
         super().__init__(
             500,
-            500, # 80_000
+            80_000,
             Mutate(self._mutation_values, 0.02),
             SinglePointCrossover(),
             NGramMutate(0.02, self.gram, self.max_strand_size),
