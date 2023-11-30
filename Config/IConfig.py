@@ -1,4 +1,4 @@
-from typing import List, Tuple, Callable
+from typing import List, Callable
 from Optimization.Operators import IMutate, ICrossover, IPopulationGenerator
 
 class IConfig:

@@ -1,12 +1,11 @@
 from requests import post
 from random import random
+from typing import List
 
 from Optimization.Operators.Mutate import Mutate
 from Optimization.Operators.RandomPopulationGenerator import RandomPopulationGenerator
 from Optimization.Operators.SinglePointCrossover import SinglePointCrossover
 
-from typing import List, Tuple, Callable
-from Optimization.Operators import IPopulationGenerator
 from .Icarus import IConfig
 
 class Match3(IConfig):

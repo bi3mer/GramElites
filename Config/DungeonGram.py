@@ -1,4 +1,4 @@
-from typing import List, Callable, Tuple
+from typing import List
 from .IConfig import IConfig
 
 from dungeongrams.dungeongrams import *
